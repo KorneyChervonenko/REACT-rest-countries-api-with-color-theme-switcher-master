@@ -1,0 +1,44 @@
+@import '../styles/_reset.scss';
+@import '../styles/_helpers.scss';
+@import '../styles/_vars.scss';
+
+.header {
+	// background-color: coral;
+	background-color: var(--element-bg-color);
+	color: var(--text-color);
+	inline-size: 100%;
+	block-size: 5rem;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+
+	// mobile
+	@media (width < $threshold-width) {
+		padding-inline: var(--padding-inline-mobile);
+	}
+
+	// desktop
+	@media (width >= $threshold-width) {
+		padding-inline: var(--padding-inline-desktop);
+	}
+
+	> h1 {
+		// background-color: bisque;
+		inline-size: fit-content;
+
+		// mobile
+		@media (width < $threshold-width) {
+			font-size: var(--fs-14);
+		}
+
+		// desktop
+		@media (width >= $threshold-width) {
+			font-size: var(--fs-24);
+		}
+	}
+
+	> .theme-switch {
+		// background-color: yellow;
+	}
+}
