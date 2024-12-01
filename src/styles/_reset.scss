@@ -53,6 +53,6 @@ img {
 	display: block;
 }
 
-button:where(:hover, :focus) {
+:where(button, input, select):where(:hover, :focus) {
 	cursor: pointer;
 }
