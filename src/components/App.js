@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Header from './Header.jsx';
 import Search from './Search.jsx';
+import CountriesList from './CountriesList.jsx';
 
 import './App.scss';
 
@@ -38,6 +39,7 @@ export default function App() {
 		<main className="App">
 			<Header />
 			<Search />
+			<CountriesList countries={countries} />
 		</main>
 	);
 }
