@@ -1,4 +1,9 @@
 import './CountriesCard.scss';
 export default function CountryCard({ country }) {
-	return <li className="country-card">{country.name}</li>;
+	const cardStyle = { backgroundImage: `url(${country.flag})` };
+	return (
+		<li className="country-card" style={cardStyle}>
+			{country.name}
+		</li>
+	);
 }

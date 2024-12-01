@@ -26,6 +26,7 @@ export default function App() {
 				// setCurrentIP(data.ip);
 				// setIPAddressInfo(data);
 				setCountries(data.slice(0, 8));
+				// console.log(countries);
 			} catch (error) {
 				console.log(error.message);
 				alert(error.message);
