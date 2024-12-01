@@ -1,3 +1,5 @@
+import CountryCard from './CountryCard.jsx';
+
 import './CountriesList.scss';
 
 export default function CountriesList({ countries }) {
@@ -11,8 +13,4 @@ export default function CountriesList({ countries }) {
 			</ul>
 		</>
 	);
-}
-
-function CountryCard(country = { country }) {
-	return <li>Country</li>;
 }

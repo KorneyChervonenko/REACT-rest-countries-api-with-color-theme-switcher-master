@@ -20,12 +20,12 @@ export default function App() {
 				// console.log(response);
 				if (!response.ok) throw new Error('Something went wrong with fetching data');
 				const data = await response.json();
-				// console.log(data);
+				console.log(data);
 				// if (data.error) throw new Error('Invalid IP Address');
 				// alert(data.query);
 				// setCurrentIP(data.ip);
 				// setIPAddressInfo(data);
-				setCountries(data);
+				setCountries(data.slice(0, 8));
 			} catch (error) {
 				console.log(error.message);
 				alert(error.message);

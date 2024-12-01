@@ -1,0 +1,14 @@
+@import '../styles/_reset.scss';
+@import '../styles/_helpers.scss';
+@import '../styles/_vars.scss';
+
+.country-card {
+	// background-color: bisque;
+	background-color: var(--element-bg-color);
+	color: var(--text-color);
+
+	display: flex;
+
+	inline-size: 16.5rem;
+	block-size: 21rem;
+}
