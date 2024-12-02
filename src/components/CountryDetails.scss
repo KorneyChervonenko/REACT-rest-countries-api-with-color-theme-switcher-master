@@ -1,0 +1,15 @@
+@import '../styles/_reset.scss';
+@import '../styles/_helpers.scss';
+@import '../styles/_vars.scss';
+
+.country-details {
+	// mobile
+	@media (width < $threshold-width-header) {
+		padding-inline: var(--padding-inline-mobile);
+	}
+
+	// desktop
+	@media (width >= $threshold-width-header) {
+		padding-inline: var(--padding-inline-desktop);
+	}
+}

@@ -1,8 +1,13 @@
 import './CountriesCard.scss';
-export default function CountryCard({ country }) {
+export default function CountryCard({ country, setDetailsActive, setCurrentCountry }) {
+	function handleClick() {
+		setCurrentCountry(country);
+		setDetailsActive(true);
+	}
+
 	const cardStyle = { backgroundImage: `url(${country.flag})` };
 	return (
-		<li className="country-card" style={cardStyle}>
+		<li className="country-card" style={cardStyle} onClick={handleClick}>
 			<h3 className="country-card__name">{country.name}</h3>
 			<div className="country-card__info">
 				<p className="country-card__table-row">
