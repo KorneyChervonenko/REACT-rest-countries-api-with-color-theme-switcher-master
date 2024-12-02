@@ -7,11 +7,31 @@
 	background-color: var(--element-bg-color);
 	color: var(--text-color);
 
+	border-radius: 0.5rem;
+
 	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	row-gap: 1rem;
 
 	inline-size: 16.5rem;
 	block-size: 21rem;
 
 	background-repeat: no-repeat;
 	background-size: contain;
+
+	padding-inline: 1.5rem;
+	padding-block-end: 2rem;
+
+	> .country-card__info {
+		> .country-card__table-row {
+			// display: flex;
+			// flex-direction: row;
+			// column-gap: 0.5rem;
+			> .country-card__table-row-title {
+				font-weight: 600;
+				margin-inline-end: 0.5rem;
+			}
+		}
+	}
 }
