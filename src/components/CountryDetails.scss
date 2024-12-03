@@ -13,7 +13,7 @@
 		padding-inline: var(--padding-inline-desktop);
 	}
 
-	> .country-details__flag {
+	> .country-flag {
 		// mobile
 		@media (width < $threshold-width-header) {
 			// inline-size: 20rem;
@@ -23,6 +23,17 @@
 		// desktop
 		@media (width >= $threshold-width-header) {
 			inline-size: 35rem;
+		}
+	}
+
+	> .country-statistic {
+		> .neighbor-countries-list {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			justify-content: space-evenly;
+			justify-content: flex-start;
+			gap: 0.5rem;
 		}
 	}
 }

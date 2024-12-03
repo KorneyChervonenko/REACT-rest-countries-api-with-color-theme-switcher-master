@@ -26,13 +26,13 @@ export default function CountryDetails({ country, countries, setDetailsActive, s
 			<button type="button" onClick={handleBackClick}>
 				BACK
 			</button>
-			Country Details
-			<img className="country-details__flag" src={country.flag} alt={`flag of ${country.name}`} />
-			<section className="country-details__statistic">
-				<h3 className="country-details__name">{country.name}</h3>
+
+			<img className="country-flag" src={country.flag} alt={`flag of ${country.name}`} />
+			<section className="country-statistic">
+				<h3 className="country-name">{country.name}</h3>
 				Country statistic
 				{hasNeighborStates(country) && (
-					<menu className="country-details__border-countries">
+					<menu className="neighbor-countries-list">
 						{country.borders.map((countryCode) => (
 							// <li key={countryCode}>{countryCode}</li>
 							<CountryButton
