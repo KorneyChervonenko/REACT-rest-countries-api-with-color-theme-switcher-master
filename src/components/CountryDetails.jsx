@@ -1,4 +1,5 @@
 // import getDetails from './utils/getDetails.mjs';
+import CountryButton from './CountryButton.jsx';
 import './CountryDetails.scss';
 
 export default function CountryDetails({ country, countries, setDetailsActive, setCurrentCountry }) {
@@ -34,7 +35,7 @@ export default function CountryDetails({ country, countries, setDetailsActive, s
 					<menu className="country-details__border-countries">
 						{country.borders.map((countryCode) => (
 							// <li key={countryCode}>{countryCode}</li>
-							<ChangeCountryButton
+							<CountryButton
 								key={countryCode}
 								countries={countries}
 								countryCode={countryCode}
@@ -45,17 +46,5 @@ export default function CountryDetails({ country, countries, setDetailsActive, s
 				)}
 			</section>
 		</div>
-	);
-}
-
-function ChangeCountryButton({ countries, countryCode, setCurrentCountry }) {
-	// console.log(countries);
-	const country = countries.find((country) => country.alpha3Code === countryCode);
-	return (
-		<li>
-			{/* {countryCode} */}
-
-			<button type="button">{country.name}</button>
-		</li>
 	);
 }

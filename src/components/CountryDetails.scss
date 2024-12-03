@@ -13,7 +13,7 @@
 		padding-inline: var(--padding-inline-desktop);
 	}
 
-	> .country-flag {
+	> .country-details__flag {
 		// mobile
 		@media (width < $threshold-width-header) {
 			// inline-size: 20rem;
