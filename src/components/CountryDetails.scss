@@ -12,4 +12,17 @@
 	@media (width >= $threshold-width-header) {
 		padding-inline: var(--padding-inline-desktop);
 	}
+
+	> .country-flag {
+		// mobile
+		@media (width < $threshold-width-header) {
+			// inline-size: 20rem;
+			inline-size: 100%;
+		}
+
+		// desktop
+		@media (width >= $threshold-width-header) {
+			inline-size: 35rem;
+		}
+	}
 }

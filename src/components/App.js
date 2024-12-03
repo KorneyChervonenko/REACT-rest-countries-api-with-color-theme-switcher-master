@@ -10,7 +10,8 @@ export default function App() {
 	const [isLoading, setIsLoading] = useState(false);
 	const [countries, setCountries] = useState([]);
 	const [isDetailsActive, setDetailsActive] = useState(false);
-	const [currentCountry, setCurrentCountry] = useState('Afghanistan');
+	// const [currentCountry, setCurrentCountry] = useState('Afghanistan');
+	const [currentCountry, setCurrentCountry] = useState(undefined);
 
 	useEffect(function () {
 		console.clear();
@@ -45,9 +46,8 @@ export default function App() {
 			<Header />
 			{currentCountry && isDetailsActive ? (
 				<>
-					<button type="button">BACK</button>
 					{/* {currentCountry} */}
-					<CountryDetails country={currentCountry} key={currentCountry.name} />
+					<CountryDetails key={currentCountry.name} country={currentCountry} setDetailsActive={setDetailsActive} />
 				</>
 			) : (
 				<>

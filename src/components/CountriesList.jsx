@@ -9,8 +9,8 @@ export default function CountriesList({ countries, setDetailsActive, setCurrentC
 			<ul className="countries-list">
 				{countries.map((country, index) => (
 					<CountryCard
-						country={country}
 						key={country.name}
+						country={country}
 						setDetailsActive={setDetailsActive}
 						setCurrentCountry={setCurrentCountry}
 					/>
