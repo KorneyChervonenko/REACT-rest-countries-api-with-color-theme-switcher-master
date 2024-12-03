@@ -30,7 +30,8 @@ export default function App() {
 				// alert(data.query);
 				// setCurrentIP(data.ip);
 				// setIPAddressInfo(data);
-				setCountries(data.slice(0, 8));
+				// setCountries(data.slice(0, 8));
+				setCountries(data);
 				// console.log(countries);
 			} catch (error) {
 				console.log(error.message);
@@ -47,7 +48,13 @@ export default function App() {
 			{currentCountry && isDetailsActive ? (
 				<>
 					{/* {currentCountry} */}
-					<CountryDetails key={currentCountry.name} country={currentCountry} setDetailsActive={setDetailsActive} />
+					<CountryDetails
+						key={currentCountry.name}
+						country={currentCountry}
+						countries={countries}
+						setDetailsActive={setDetailsActive}
+						setCurrentCountry={setCurrentCountry}
+					/>
 				</>
 			) : (
 				<>

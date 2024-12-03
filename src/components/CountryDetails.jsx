@@ -1,7 +1,7 @@
 // import getDetails from './utils/getDetails.mjs';
 import './CountryDetails.scss';
 
-export default function CountryDetails({ country, setDetailsActive }) {
+export default function CountryDetails({ country, countries, setDetailsActive, setCurrentCountry }) {
 	// console.log(countryName);
 
 	// if (!countryName) return;
@@ -12,6 +12,12 @@ export default function CountryDetails({ country, setDetailsActive }) {
 	function handleBackClick() {
 		setDetailsActive(false);
 	}
+
+	function hasNeighborStates(country) {
+		return Object.hasOwn(country, 'borders') && country.borders instanceof Array && country.borders.length > 0;
+	}
+
+	// const neighborCountry = country.borders.map((countryCode) => <li>countryCode</li>);
 
 	return (
 		<div className="country-details">
@@ -24,8 +30,32 @@ export default function CountryDetails({ country, setDetailsActive }) {
 			<section className="country-details__statistic">
 				<h3 className="country-details__name">{country.name}</h3>
 				Country statistic
-				<menu className="country-details__border-countries"></menu>
+				{hasNeighborStates(country) && (
+					<menu className="country-details__border-countries">
+						{country.borders.map((countryCode) => (
+							// <li key={countryCode}>{countryCode}</li>
+							<ChangeCountryButton
+								key={countryCode}
+								countries={countries}
+								countryCode={countryCode}
+								setCurrentCountry={setCurrentCountry}
+							/>
+						))}
+					</menu>
+				)}
 			</section>
 		</div>
+	);
+}
+
+function ChangeCountryButton({ countries, countryCode, setCurrentCountry }) {
+	// console.log(countries);
+	const country = countries.find((country) => country.alpha3Code === countryCode);
+	return (
+		<li>
+			{/* {countryCode} */}
+
+			<button type="button">{country.name}</button>
+		</li>
 	);
 }
