@@ -2,22 +2,34 @@
 import CountryButton from './CountryButton.jsx';
 import './CountryDetails.scss';
 
-export default function CountryDetails({ country, countries, setDetailsActive, setCurrentCountry }) {
+export default function CountryDetails({
+	// currentCountry,
+	countries,
+	setDetailsActive,
+	// setCurrentCountry,
+	history,
+	setHistory,
+}) {
 	// console.log(countryName);
 
-	if (!country) return;
+	const currentCountry = history.at(-1);
+	if (!currentCountry) return;
 
 	// TODO return to previous country
 
 	function handleBackClick() {
-		setDetailsActive(false);
+		// setDetailsActive(false);
+		setHistory((currentHistory) => currentHistory.slice(0, -1));
+		if (history.length === 0) setDetailsActive(false);
 	}
 
 	function hasNeighborStates(country) {
-		return Object.hasOwn(country, 'borders') && country.borders instanceof Array && country.borders.length > 0;
+		return (
+			Object.hasOwn(country, 'borders') && currentCountry.borders instanceof Array && currentCountry.borders.length > 0
+		);
 	}
 
-	// const neighborCountry = country.borders.map((countryCode) => <li>countryCode</li>);
+	// const neighborCountry = currentCountry.borders.map((countryCode) => <li>countryCode</li>);
 
 	return (
 		<>
@@ -28,60 +40,62 @@ export default function CountryDetails({ country, countries, setDetailsActive, s
 			<div className="country-details">
 				<h2 className="visually-hidden">Country Details</h2>
 
-				<img className="country-flag" src={country.flag} alt={`flag of ${country.name}`} />
+				<img className="country-flag" src={currentCountry.flag} alt={`flag of ${currentCountry.name}`} />
 				<section className="country-statistic">
-					<h3 className="country-name">{country.name}</h3>
+					<h3 className="country-name">{currentCountry.name}</h3>
 					{/* Country statistic */}
 					<table className="statistic-table">
 						<tbody>
 							<tr>
 								<th scope="row">Native Name:</th>
-								<td>{country?.nativeName}</td>
+								<td>{currentCountry?.nativeName}</td>
 							</tr>
 							<tr>
 								<th scope="row">Population:</th>
-								<td>{country?.population}</td>
+								<td>{currentCountry?.population}</td>
 							</tr>
 							<tr>
 								<th scope="row">Region:</th>
-								<td>{country?.region}</td>
+								<td>{currentCountry?.region}</td>
 							</tr>
 							<tr>
 								<th scope="row">Sub Region:</th>
-								<td>{country?.subregion}</td>
+								<td>{currentCountry?.subregion}</td>
 							</tr>
 							<tr>
 								<th scope="row">Capital:</th>
-								<td>{country?.capital}</td>
+								<td>{currentCountry?.capital}</td>
 							</tr>
 							<tr>
 								<th scope="row">Top Level Domain:</th>
-								<td>{country?.topLevelDomain}</td>
+								<td>{currentCountry?.topLevelDomain}</td>
 							</tr>
 							<tr>
 								<th scope="row">Currencies:</th>
-								<td>{country?.currencies.map((currency) => currency.name).join(', ')}</td>
+								<td>{currentCountry?.currencies.map((currency) => currency.name).join(', ')}</td>
 							</tr>
 							<tr>
 								<th scope="row">Languages:</th>
-								<td>{country?.languages.map((language) => language.name).join(', ')}</td>
+								<td>{currentCountry?.languages.map((language) => language.name).join(', ')}</td>
 							</tr>
 						</tbody>
 					</table>
-					{hasNeighborStates(country) && (
+					{hasNeighborStates(currentCountry) && (
 						<table className="neighbor-countries">
 							<tbody>
 								<tr>
 									<th scope="row">Border Countries:</th>
 									<td>
 										<menu className="neighbor-countries-list">
-											{country.borders.map((countryCode) => (
+											{currentCountry.borders.map((countryCode) => (
 												// <li key={countryCode}>{countryCode}</li>
 												<CountryButton
 													key={countryCode}
 													countries={countries}
 													countryCode={countryCode}
-													setCurrentCountry={setCurrentCountry}
+													// setCurrentCountry={setCurrentCountry}
+													history={history}
+													setHistory={setHistory}
 												/>
 											))}
 										</menu>

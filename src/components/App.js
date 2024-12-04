@@ -11,11 +11,12 @@ export default function App() {
 	const [countries, setCountries] = useState([]);
 	const [isDetailsActive, setDetailsActive] = useState(false);
 	// const [currentCountry, setCurrentCountry] = useState('Afghanistan');
-	const [currentCountry, setCurrentCountry] = useState(undefined);
+	// const [currentCountry, setCurrentCountry] = useState(undefined);
+	const [history, setHistory] = useState([]);
 
 	useEffect(function () {
 		console.clear();
-		async function fetchIPinfo() {
+		async function fetchCountries() {
 			try {
 				setIsLoading(true);
 				// let response, data;
@@ -27,9 +28,6 @@ export default function App() {
 				const data = await response.json();
 				// console.log(data);
 				// if (data.error) throw new Error('Invalid IP Address');
-				// alert(data.query);
-				// setCurrentIP(data.ip);
-				// setIPAddressInfo(data);
 				// setCountries(data.slice(0, 8));
 				setCountries(data);
 				// console.log(countries);
@@ -40,20 +38,23 @@ export default function App() {
 				setIsLoading(false);
 			}
 		}
-		fetchIPinfo();
+		fetchCountries();
 	}, []);
 	return (
 		<main className="App">
 			<Header />
-			{currentCountry && isDetailsActive ? (
+			{history.length > 0 && isDetailsActive ? (
 				<>
 					{/* {currentCountry} */}
 					<CountryDetails
-						key={currentCountry.name}
-						country={currentCountry}
+						// key={currentCountry.name}
+						key={history.at(-1).name}
+						// currentCountry={currentCountry}
 						countries={countries}
 						setDetailsActive={setDetailsActive}
-						setCurrentCountry={setCurrentCountry}
+						// setCurrentCountry={setCurrentCountry}
+						history={history}
+						setHistory={setHistory}
 					/>
 				</>
 			) : (
@@ -62,7 +63,8 @@ export default function App() {
 					<CountriesList
 						countries={countries}
 						setDetailsActive={setDetailsActive}
-						setCurrentCountry={setCurrentCountry}
+						// setCurrentCountry={setCurrentCountry}
+						setHistory={setHistory}
 					/>
 				</>
 			)}

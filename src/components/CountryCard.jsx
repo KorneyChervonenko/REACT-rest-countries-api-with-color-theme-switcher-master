@@ -1,7 +1,13 @@
 import './CountriesCard.scss';
-export default function CountryCard({ country, setDetailsActive, setCurrentCountry }) {
+export default function CountryCard({
+	country,
+	setDetailsActive,
+	// setCurrentCountry,
+	setHistory,
+}) {
 	function handleClick() {
-		setCurrentCountry(country);
+		// setCurrentCountry(country);
+		setHistory((currentHistory) => [...currentHistory, country]);
 		setDetailsActive(true);
 	}
 

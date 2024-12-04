@@ -2,7 +2,12 @@ import CountryCard from './CountryCard.jsx';
 
 import './CountriesList.scss';
 
-export default function CountriesList({ countries, setDetailsActive, setCurrentCountry }) {
+export default function CountriesList({
+	countries,
+	setDetailsActive,
+	// setCurrentCountry,
+	setHistory,
+}) {
 	return (
 		<>
 			<h2 className="visually-hidden">countries list</h2>
@@ -12,7 +17,8 @@ export default function CountriesList({ countries, setDetailsActive, setCurrentC
 						key={country.name}
 						country={country}
 						setDetailsActive={setDetailsActive}
-						setCurrentCountry={setCurrentCountry}
+						// setCurrentCountry={setCurrentCountry}
+						setHistory={setHistory}
 					/>
 				))}
 			</ul>
