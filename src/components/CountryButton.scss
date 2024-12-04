@@ -5,5 +5,10 @@
 .country-button {
 	> button {
 		padding: 0.5rem;
+		background-color: var(--element-bg-color);
+		color: var(--text-color);
+		border-style: none;
+		border-radius: 0.3rem;
+		box-shadow: 0 0 0.2rem 0 black;
 	}
 }

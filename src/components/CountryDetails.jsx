@@ -5,11 +5,10 @@ import './CountryDetails.scss';
 export default function CountryDetails({ country, countries, setDetailsActive, setCurrentCountry }) {
 	// console.log(countryName);
 
-	// if (!countryName) return;
 	if (!country) return;
-	// const country = getDetails(countryName, countries);
-	// const country = countries.find((country) => (country.name = countryName));
-	// console.log(country);
+
+	// TODO return to previous country
+
 	function handleBackClick() {
 		setDetailsActive(false);
 	}
@@ -21,66 +20,78 @@ export default function CountryDetails({ country, countries, setDetailsActive, s
 	// const neighborCountry = country.borders.map((countryCode) => <li>countryCode</li>);
 
 	return (
-		<div className="country-details">
-			<h2 className="visually-hidden">Country Details</h2>
-			<button type="button" onClick={handleBackClick}>
-				BACK
+		<>
+			<button className="back-button" type="button" onClick={handleBackClick}>
+				⬅ BACK
 			</button>
 
-			<img className="country-flag" src={country.flag} alt={`flag of ${country.name}`} />
-			<section className="country-statistic">
-				<h3 className="country-name">{country.name}</h3>
-				{/* Country statistic */}
-				<table className="statistic-table">
-					<tbody>
-						<tr>
-							<th scope="row">Native Name:</th>
-							<td>{country?.nativeName}</td>
-						</tr>
-						<tr>
-							<th scope="row">Population:</th>
-							<td>{country?.population}</td>
-						</tr>
-						<tr>
-							<th scope="row">Region:</th>
-							<td>{country?.region}</td>
-						</tr>
-						<tr>
-							<th scope="row">Sub Region:</th>
-							<td>{country?.subregion}</td>
-						</tr>
-						<tr>
-							<th scope="row">Capital:</th>
-							<td>{country?.capital}</td>
-						</tr>
-						<tr>
-							<th scope="row">Top Level Domain:</th>
-							<td>{country?.topLevelDomain}</td>
-						</tr>
-						<tr>
-							<th scope="row">Currencies:</th>
-							<td>{country?.currencies.map((currency) => currency.name).join(', ')}</td>
-						</tr>
-						<tr>
-							<th scope="row">Languages:</th>
-							<td>{country?.languages.map((language) => language.name).join(', ')}</td>
-						</tr>
-					</tbody>
-				</table>
-				{hasNeighborStates(country) && (
-					<menu className="neighbor-countries-list">
-						{country.borders.map((countryCode) => (
-							// <li key={countryCode}>{countryCode}</li>
-							<CountryButton
-								key={countryCode}
-								countries={countries}
-								countryCode={countryCode}
-								setCurrentCountry={setCurrentCountry}
-							/>
-						))}
-					</menu>
-				)}
-			</section>
-		</div>
+			<div className="country-details">
+				<h2 className="visually-hidden">Country Details</h2>
+
+				<img className="country-flag" src={country.flag} alt={`flag of ${country.name}`} />
+				<section className="country-statistic">
+					<h3 className="country-name">{country.name}</h3>
+					{/* Country statistic */}
+					<table className="statistic-table">
+						<tbody>
+							<tr>
+								<th scope="row">Native Name:</th>
+								<td>{country?.nativeName}</td>
+							</tr>
+							<tr>
+								<th scope="row">Population:</th>
+								<td>{country?.population}</td>
+							</tr>
+							<tr>
+								<th scope="row">Region:</th>
+								<td>{country?.region}</td>
+							</tr>
+							<tr>
+								<th scope="row">Sub Region:</th>
+								<td>{country?.subregion}</td>
+							</tr>
+							<tr>
+								<th scope="row">Capital:</th>
+								<td>{country?.capital}</td>
+							</tr>
+							<tr>
+								<th scope="row">Top Level Domain:</th>
+								<td>{country?.topLevelDomain}</td>
+							</tr>
+							<tr>
+								<th scope="row">Currencies:</th>
+								<td>{country?.currencies.map((currency) => currency.name).join(', ')}</td>
+							</tr>
+							<tr>
+								<th scope="row">Languages:</th>
+								<td>{country?.languages.map((language) => language.name).join(', ')}</td>
+							</tr>
+						</tbody>
+					</table>
+					{hasNeighborStates(country) && (
+						<table className="neighbor-countries">
+							<tbody>
+								<tr>
+									<th scope="row">Border Countries:</th>
+									<td>
+										<menu className="neighbor-countries-list">
+											{country.borders.map((countryCode) => (
+												// <li key={countryCode}>{countryCode}</li>
+												<CountryButton
+													key={countryCode}
+													countries={countries}
+													countryCode={countryCode}
+													setCurrentCountry={setCurrentCountry}
+												/>
+											))}
+										</menu>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					)}
+				</section>
+			</div>
+		</>
 	);
 }

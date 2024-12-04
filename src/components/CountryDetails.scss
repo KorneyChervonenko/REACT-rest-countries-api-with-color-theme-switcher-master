@@ -2,53 +2,134 @@
 @import '../styles/_helpers.scss';
 @import '../styles/_vars.scss';
 
-.country-details {
+.back-button {
+	background-color: var(--element-bg-color);
+	color: var(--text-color);
+	border-style: none;
 	// mobile
-	@media (width < $threshold-width-header) {
-		padding-inline: var(--padding-inline-mobile);
+	@media (width < $threshold-width) {
+		margin-inline-start: var(--padding-inline-mobile);
 	}
 
 	// desktop
-	@media (width >= $threshold-width-header) {
+	@media (width >= $threshold-width) {
+		margin-inline-start: var(--padding-inline-desktop);
+	}
+}
+
+.country-details {
+	background-color: var(--main-bg-color);
+	color: var(--text-color);
+
+	display: flex;
+	// mobile
+	@media (width < $threshold-width) {
+		padding-inline: var(--padding-inline-mobile);
+		flex-direction: column;
+		align-items: center;
+	}
+
+	// desktop
+	@media (width >= $threshold-width) {
 		padding-inline: var(--padding-inline-desktop);
+		flex-direction: row;
+		justify-content: center;
+		column-gap: 8.5rem;
+		margin-block-start: 5%;
 	}
 
 	> .country-flag {
+		block-size: 100%;
+
 		// mobile
-		@media (width < $threshold-width-header) {
+		@media (width < $threshold-width) {
 			// inline-size: 20rem;
 			inline-size: 100%;
+			max-inline-size: 35rem;
 		}
 
 		// desktop
-		@media (width >= $threshold-width-header) {
+		@media (width >= $threshold-width) {
 			inline-size: 35rem;
 		}
 	}
 
 	> .country-statistic {
-		background-color: coral;
+		// background-color: coral;
 		display: flex;
 		flex-direction: column;
+		// justify-content: flex-start;
+		align-items: flex-start;
+
+		// mobile
+		@media (width < $threshold-width) {
+			inline-size: 100%;
+			max-inline-size: 35rem;
+		}
+
+		// desktop
+		@media (width >= $threshold-width) {
+			justify-content: center;
+		}
 
 		> .statistic-table {
+			// background-color: bisque;
 			> tbody {
-				background-color: bisque;
-				block-size: 9rem;
+				// background-color: bisque;
+
 				display: flex;
 				flex-direction: column;
-				flex-wrap: wrap;
-				// column-gap: 1rem;
+
+				column-gap: 2rem;
+
+				// mobile
+				@media (width < $threshold-width) {
+				}
+
+				// desktop
+				@media (width >= $threshold-width) {
+					block-size: 7rem;
+
+					flex-wrap: wrap;
+				}
 			}
 		}
 
-		> .neighbor-countries-list {
+		> .neighbor-countries {
 			display: flex;
-			flex-direction: row;
-			flex-wrap: wrap;
-			justify-content: space-evenly;
-			justify-content: flex-start;
-			gap: 0.5rem;
+
+			// mobile
+			@media (width < $threshold-width) {
+				// inline-size: 20rem;
+				inline-size: 100%;
+				max-inline-size: 35rem;
+				flex-direction: column;
+			}
+
+			// desktop
+			@media (width >= $threshold-width) {
+				// inline-size: 35rem;
+				flex-direction: row;
+				margin-block-start: 4rem;
+			}
+
+			th {
+				white-space: nowrap;
+				// background-color: cadetblue;
+				// display: flex;
+				// flex-direction: column;
+				// align-items: center;
+				// justify-items: center;
+			}
+
+			.neighbor-countries-list {
+				display: flex;
+				flex-direction: row;
+				flex-wrap: wrap;
+				justify-content: space-evenly;
+				justify-content: flex-start;
+				gap: 0.5rem;
+			}
 		}
 	}
 }
