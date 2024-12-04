@@ -27,6 +27,21 @@
 	}
 
 	> .country-statistic {
+		background-color: coral;
+		display: flex;
+		flex-direction: column;
+
+		> .statistic-table {
+			> tbody {
+				background-color: bisque;
+				block-size: 9rem;
+				display: flex;
+				flex-direction: column;
+				flex-wrap: wrap;
+				// column-gap: 1rem;
+			}
+		}
+
 		> .neighbor-countries-list {
 			display: flex;
 			flex-direction: row;

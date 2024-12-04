@@ -30,7 +30,43 @@ export default function CountryDetails({ country, countries, setDetailsActive, s
 			<img className="country-flag" src={country.flag} alt={`flag of ${country.name}`} />
 			<section className="country-statistic">
 				<h3 className="country-name">{country.name}</h3>
-				Country statistic
+				{/* Country statistic */}
+				<table className="statistic-table">
+					<tbody>
+						<tr>
+							<th scope="row">Native Name:</th>
+							<td>{country?.nativeName}</td>
+						</tr>
+						<tr>
+							<th scope="row">Population:</th>
+							<td>{country?.population}</td>
+						</tr>
+						<tr>
+							<th scope="row">Region:</th>
+							<td>{country?.region}</td>
+						</tr>
+						<tr>
+							<th scope="row">Sub Region:</th>
+							<td>{country?.subregion}</td>
+						</tr>
+						<tr>
+							<th scope="row">Capital:</th>
+							<td>{country?.capital}</td>
+						</tr>
+						<tr>
+							<th scope="row">Top Level Domain:</th>
+							<td>{country?.topLevelDomain}</td>
+						</tr>
+						<tr>
+							<th scope="row">Currencies:</th>
+							<td>{country?.currencies.map((currency) => currency.name).join(', ')}</td>
+						</tr>
+						<tr>
+							<th scope="row">Languages:</th>
+							<td>{country?.languages.map((language) => language.name).join(', ')}</td>
+						</tr>
+					</tbody>
+				</table>
 				{hasNeighborStates(country) && (
 					<menu className="neighbor-countries-list">
 						{country.borders.map((countryCode) => (
