@@ -13,6 +13,8 @@ export default function App() {
 	// const [currentCountry, setCurrentCountry] = useState('Afghanistan');
 	// const [currentCountry, setCurrentCountry] = useState(undefined);
 	const [history, setHistory] = useState([]);
+	const [region, setRegion] = useState('All');
+	const [searchQuery, setSearchQuery] = useState('');
 
 	useEffect(function () {
 		console.clear();
@@ -59,8 +61,10 @@ export default function App() {
 				</>
 			) : (
 				<>
-					<Search />
+					<Search region={region} setRegion={setRegion} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
 					<CountriesList
+						searchQuery={searchQuery}
+						region={region}
 						countries={countries}
 						setDetailsActive={setDetailsActive}
 						// setCurrentCountry={setCurrentCountry}
