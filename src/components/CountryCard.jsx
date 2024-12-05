@@ -11,24 +11,45 @@ export default function CountryCard({
 		setDetailsActive(true);
 	}
 
-	const cardStyle = { backgroundImage: `url(${country.flag})` };
+	// const cardStyle = { backgroundImage: `url(${country.flag})` };
+	const cardStyle = {};
 	return (
 		<li className="country-card" style={cardStyle} onClick={handleClick}>
-			<h3 className="country-card__name">{country.name}</h3>
-			<div className="country-card__info">
-				<p className="country-card__table-row">
-					<span className="country-card__table-row-title">Population:</span>
+			{/* <h3 className="country-name">{country.name}</h3> */}
+			{/* <h3 className="country-name">{country.name}</h3> */}
+			<img src={country.flag} alt={`flag of ${country.name}`} className="country-flag" />
+			<table className="country-info">
+				<caption className="country-name">{country.name}</caption>
+				<tbody>
+					<tr>
+						<th scope="row">Population:</th>
+						<td>{country.population}</td>
+					</tr>
+					<tr>
+						<th scope="row">Region:</th>
+						<td>{country.region}</td>
+					</tr>
+					<tr>
+						<th scope="row">Capital:</th>
+						<td>{country.capital}</td>
+					</tr>
+				</tbody>
+			</table>
+
+			{/* <div className="country-info">
+				<p className="table-row">
+					<span className="table-row-title">Population:</span>
 					{country.population}
 				</p>
-				<p className="country-card__table-row">
-					<span className="country-card__table-row-title">Region:</span>
+				<p className="table-row">
+					<span className="table-row-title">Region:</span>
 					{country.region}
 				</p>
-				<p className="country-card__table-row">
-					<span className="country-card__table-row-title">Capital:</span>
+				<p className="table-row">
+					<span className="table-row-title">Capital:</span>
 					{country.capital}
 				</p>
-			</div>
+			</div> */}
 		</li>
 	);
 }
