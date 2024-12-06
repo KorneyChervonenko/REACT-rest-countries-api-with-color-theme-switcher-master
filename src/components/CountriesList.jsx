@@ -11,9 +11,10 @@ export default function CountriesList({
 	setHistory,
 }) {
 	// alert('region:' + region);
+
 	const countriesFilteredByRegion =
 		region === 'All' ? [...countries] : countries.filter((country) => country.region === region);
-
+	// alert(countriesFilteredByRegion.length);
 	const filteredCountries =
 		searchQuery === ''
 			? countriesFilteredByRegion

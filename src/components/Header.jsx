@@ -4,11 +4,23 @@ import './Header.scss';
 import iconMoon from '../images/icon-moon.svg';
 import iconSun from '../images/icon-sun.svg';
 
-export default function Header() {
+export default function Header({ setDetailsActive, setHistory, setRegion, setSearchQuery }) {
+	function handleReset(e) {
+		e.preventDefault();
+		setDetailsActive(false);
+		setHistory([]);
+		setRegion('All');
+		setSearchQuery('');
+	}
+
 	const [colorTheme, changeColorTheme] = useState('light');
 	return (
 		<header className="header">
-			<h1>Where in the world?</h1>
+			<h1>
+				<button type="reset" onClick={(e) => handleReset(e)}>
+					Where in the world?
+				</button>
+			</h1>
 			<label className="theme-switch">
 				<input
 					className="theme-switch-checkbox-control"

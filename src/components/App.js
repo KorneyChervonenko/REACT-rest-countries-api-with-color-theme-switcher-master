@@ -30,6 +30,9 @@ export default function App() {
 				// console.log(data);
 				// setCountries(data.slice(0, 8));
 				setCountries(data);
+				// const regions = new Set(data.map((country) => country.region));
+				// console.log(regions);
+
 				// console.log(countries);
 			} catch (error) {
 				console.log(error.message);
@@ -42,7 +45,12 @@ export default function App() {
 	}, []);
 	return (
 		<main className="App">
-			<Header />
+			<Header
+				setDetailsActive={setDetailsActive}
+				setHistory={setHistory}
+				setRegion={setRegion}
+				setSearchQuery={setSearchQuery}
+			/>
 			{history.length > 0 && isDetailsActive ? (
 				<>
 					<CountryDetails
