@@ -22,14 +22,12 @@ export default function App() {
 			try {
 				setIsLoading(true);
 				// let response, data;
-				// response = await fetch(`http://ip-api.com/json/${currentIP}`);
-				// response = await fetch(`https://freeipapi.com/api/json/${currentIP}`);
-				const response = await fetch('data.json');
+				const response = await fetch('data.json'); //
+				// const response = await fetch('https://restcountries.com/v2/all');
 				// console.log(response);
 				if (!response.ok) throw new Error('Something went wrong with fetching data');
 				const data = await response.json();
 				// console.log(data);
-				// if (data.error) throw new Error('Invalid IP Address');
 				// setCountries(data.slice(0, 8));
 				setCountries(data);
 				// console.log(countries);
@@ -47,14 +45,10 @@ export default function App() {
 			<Header />
 			{history.length > 0 && isDetailsActive ? (
 				<>
-					{/* {currentCountry} */}
 					<CountryDetails
-						// key={currentCountry.name}
 						key={history.at(-1).name}
-						// currentCountry={currentCountry}
 						countries={countries}
 						setDetailsActive={setDetailsActive}
-						// setCurrentCountry={setCurrentCountry}
 						history={history}
 						setHistory={setHistory}
 					/>
@@ -67,7 +61,6 @@ export default function App() {
 						region={region}
 						countries={countries}
 						setDetailsActive={setDetailsActive}
-						// setCurrentCountry={setCurrentCountry}
 						setHistory={setHistory}
 					/>
 				</>
