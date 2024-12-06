@@ -11,6 +11,7 @@
 	box-shadow: 0 0 0.2rem 0 black;
 
 	margin-block-start: 2.5rem;
+	align-self: flex-start;
 
 	// mobile
 	@media (width < $threshold-width-header) {
@@ -63,6 +64,7 @@
 	}
 
 	> .country-statistic {
+		margin-block-start: 2.5rem;
 		// background-color: coral;
 		display: flex;
 		flex-direction: column;

@@ -13,7 +13,8 @@ export default function Header({ setDetailsActive, setHistory, setRegion, setSea
 		setSearchQuery('');
 	}
 
-	const [colorTheme, changeColorTheme] = useState('light');
+	// const [colorTheme, changeColorTheme] = useState('light');
+	const [colorTheme, changeColorTheme] = useState('dark');
 	return (
 		<header className="header">
 			<h1>

@@ -3,6 +3,7 @@ import Header from './Header.jsx';
 import Search from './Search.jsx';
 import CountriesList from './CountriesList.jsx';
 import CountryDetails from './CountryDetails.jsx';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import './App.scss';
 
@@ -52,25 +53,30 @@ export default function App() {
 				setSearchQuery={setSearchQuery}
 			/>
 			{history.length > 0 && isDetailsActive ? (
-				<>
-					<CountryDetails
-						key={history.at(-1).name}
-						countries={countries}
-						setDetailsActive={setDetailsActive}
-						history={history}
-						setHistory={setHistory}
-					/>
-				</>
+				<CountryDetails
+					key={history.at(-1).name}
+					countries={countries}
+					setDetailsActive={setDetailsActive}
+					history={history}
+					setHistory={setHistory}
+				/>
 			) : (
 				<>
 					<Search region={region} setRegion={setRegion} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-					<CountriesList
-						searchQuery={searchQuery}
-						region={region}
-						countries={countries}
-						setDetailsActive={setDetailsActive}
-						setHistory={setHistory}
-					/>
+					{isLoading && (
+						<>
+							<CircularProgress style={{ color: 'yellow' }} />
+						</>
+					)}
+					{!isLoading && (
+						<CountriesList
+							searchQuery={searchQuery}
+							region={region}
+							countries={countries}
+							setDetailsActive={setDetailsActive}
+							setHistory={setHistory}
+						/>
+					)}
 				</>
 			)}
 		</main>
