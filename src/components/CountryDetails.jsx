@@ -34,7 +34,7 @@ export default function CountryDetails({
 	return (
 		<>
 			<button className="back-button" type="button" onClick={handleBackClick}>
-				⬅ BACK
+				⬅ Back
 			</button>
 
 			<div className="country-details">

@@ -45,7 +45,9 @@ export default function Header({ setDetailsActive, setHistory, setRegion, setSea
 
 function SwitchIcon({ icon, text }) {
 	return (
-		<span style={{ display: 'flex', columnGap: '0.5rem', alignItems: 'center', fontSize: 'inherit' }}>
+		<span
+			style={{ display: 'flex', columnGap: '0.5rem', alignItems: 'center', fontSize: 'inherit', cursor: 'pointer' }}
+		>
 			<img src={icon} alt="" style={{ inlineSize: '1em' }} />
 			<span>{text} Mode</span>
 		</span>

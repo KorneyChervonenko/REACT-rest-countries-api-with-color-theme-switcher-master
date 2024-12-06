@@ -3,16 +3,22 @@
 @import '../styles/_vars.scss';
 
 .back-button {
+	padding: 0.5rem;
 	background-color: var(--element-bg-color);
 	color: var(--text-color);
 	border-style: none;
+	border-radius: 0.3rem;
+	box-shadow: 0 0 0.2rem 0 black;
+
+	margin-block-start: 2.5rem;
+
 	// mobile
-	@media (width < $threshold-width) {
+	@media (width < $threshold-width-header) {
 		margin-inline-start: var(--padding-inline-mobile);
 	}
 
 	// desktop
-	@media (width >= $threshold-width) {
+	@media (width >= $threshold-width-header) {
 		margin-inline-start: var(--padding-inline-desktop);
 	}
 }
@@ -20,6 +26,8 @@
 .country-details {
 	background-color: var(--main-bg-color);
 	color: var(--text-color);
+
+	margin-block-start: 2.5rem;
 
 	display: flex;
 	// mobile
@@ -35,7 +43,7 @@
 		flex-direction: row;
 		justify-content: center;
 		column-gap: 8.5rem;
-		margin-block-start: 5%;
+		// margin-block-start: 5%;
 	}
 
 	> .country-flag {

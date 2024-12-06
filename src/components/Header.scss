@@ -6,6 +6,7 @@
 	// background-color: coral;
 	background-color: var(--element-bg-color);
 	color: var(--text-color);
+	box-shadow: 0 0 0.2rem 0 black;
 	inline-size: 100%;
 	block-size: 5rem;
 	display: flex;
@@ -27,6 +28,11 @@
 
 	> h1 {
 		font-size: inherit;
+		> button {
+			background-color: var(--element-bg-color);
+			color: var(--text-color);
+			border-style: none;
+		}
 		// background-color: bisque;
 		// inline-size: fit-content;
 
