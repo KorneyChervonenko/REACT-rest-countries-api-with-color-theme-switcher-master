@@ -62,12 +62,13 @@ export default function App() {
 				/>
 			) : (
 				<>
-					<Search region={region} setRegion={setRegion} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-					{isLoading && (
-						<>
-							<CircularProgress style={{ color: 'yellow' }} />
-						</>
-					)}
+					<Search
+						region={region}
+						setRegion={setRegion}
+						searchQuery={searchQuery}
+						setSearchQuery={setSearchQuery}
+					/>
+					{isLoading && <CircularProgress style={{ color: 'yellow' }} />}
 					{!isLoading && (
 						<CountriesList
 							searchQuery={searchQuery}
