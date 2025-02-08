@@ -1,24 +1,21 @@
 import CountryCard from './CountryCard.jsx';
 
 import './CountriesList.scss';
+import { useCountriesContext } from '../contexts/CountriesContext.jsx';
 
-export default function CountriesList({
-	searchQuery,
-	region,
-	countries,
-	setDetailsActive,
-	// setCurrentCountry,
-	setHistory,
-}) {
+export default function CountriesList() {
 	// alert('region:' + region);
-
+	const { countries, history, region, searchQuery, isDetailsActive, isLoading, dispatch } =
+		useCountriesContext();
 	const countriesFilteredByRegion =
 		region === 'All' ? [...countries] : countries.filter((country) => country.region === region);
 	// alert(countriesFilteredByRegion.length);
 	const filteredCountries =
 		searchQuery === ''
 			? countriesFilteredByRegion
-			: countriesFilteredByRegion.filter((country) => country.name.toLowerCase().startsWith(searchQuery));
+			: countriesFilteredByRegion.filter((country) =>
+					country.name.toLowerCase().startsWith(searchQuery)
+			  );
 
 	return (
 		<>
@@ -28,9 +25,9 @@ export default function CountriesList({
 					<CountryCard
 						key={country.name}
 						country={country}
-						setDetailsActive={setDetailsActive}
-						// setCurrentCountry={setCurrentCountry}
-						setHistory={setHistory}
+						// setDetailsActive={setDetailsActive}
+						// // setCurrentCountry={setCurrentCountry}
+						// setHistory={setHistory}
 					/>
 				))}
 			</ul>

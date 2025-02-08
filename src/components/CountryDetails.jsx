@@ -1,31 +1,28 @@
 // import getDetails from './utils/getDetails.mjs';
+import { useCountriesContext } from '../contexts/CountriesContext.jsx';
 import CountryButton from './CountryButton.jsx';
 import './CountryDetails.scss';
 
-export default function CountryDetails({
-	// currentCountry,
-	countries,
-	setDetailsActive,
-	// setCurrentCountry,
-	history,
-	setHistory,
-}) {
+export default function CountryDetails() {
 	// console.log(countryName);
-
+	const { countries, history, region, searchQuery, isDetailsActive, isLoading, dispatch } =
+		useCountriesContext();
 	const currentCountry = history.at(-1);
 	if (!currentCountry) return;
 
 	// TODO return to previous country
 
-	function handleBackClick() {
-		// setDetailsActive(false);
-		setHistory((currentHistory) => currentHistory.slice(0, -1));
-		if (history.length === 0) setDetailsActive(false);
-	}
+	// function handleBackClick() {
+	// 	// setDetailsActive(false);
+	// 	setHistory((currentHistory) => currentHistory.slice(0, -1));
+	// 	if (history.length === 0) setDetailsActive(false);
+	// }
 
 	function hasNeighborStates(country) {
 		return (
-			Object.hasOwn(country, 'borders') && currentCountry.borders instanceof Array && currentCountry.borders.length > 0
+			Object.hasOwn(country, 'borders') &&
+			currentCountry.borders instanceof Array &&
+			currentCountry.borders.length > 0
 		);
 	}
 
@@ -33,14 +30,22 @@ export default function CountryDetails({
 
 	return (
 		<>
-			<button className="back-button" type="button" onClick={handleBackClick}>
+			<button
+				className="back-button"
+				type="button"
+				onClick={() => dispatch({ type: 'rewind history' })}
+			>
 				⬅ Back
 			</button>
 
 			<div className="country-details">
 				<h2 className="visually-hidden">Country Details</h2>
 
-				<img className="country-flag" src={currentCountry.flag} alt={`flag of ${currentCountry.name}`} />
+				<img
+					className="country-flag"
+					src={currentCountry.flag}
+					alt={`flag of ${currentCountry.name}`}
+				/>
 				<section className="country-statistic">
 					<h3 className="country-name">{currentCountry.name}</h3>
 					{/* Country statistic */}
@@ -91,11 +96,11 @@ export default function CountryDetails({
 												// <li key={countryCode}>{countryCode}</li>
 												<CountryButton
 													key={countryCode}
-													countries={countries}
+													// countries={countries}
 													countryCode={countryCode}
-													// setCurrentCountry={setCurrentCountry}
-													history={history}
-													setHistory={setHistory}
+													// // setCurrentCountry={setCurrentCountry}
+													// history={history}
+													// setHistory={setHistory}
 												/>
 											))}
 										</menu>

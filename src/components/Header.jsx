@@ -3,21 +3,27 @@ import './Header.scss';
 
 import iconMoon from '../images/icon-moon.svg';
 import iconSun from '../images/icon-sun.svg';
+import { useCountriesContext } from '../contexts/CountriesContext';
 
-export default function Header({ setDetailsActive, setHistory, setRegion, setSearchQuery }) {
+export default function Header() {
 	function handleReset(e) {
 		e.preventDefault();
-		setDetailsActive(false);
-		setHistory([]);
-		setRegion('All');
-		setSearchQuery('');
+		// setDetailsActive(false);
+		// setHistory([]);
+		// setRegion('All');
+		// setSearchQuery('');
+		dispatch({ type: 'reset' });
 	}
 
 	// const [colorTheme, changeColorTheme] = useState('light');
+	const { countries, history, region, searchQuery, isDetailsActive, isLoading, dispatch } =
+		useCountriesContext();
+
 	const [colorTheme, changeColorTheme] = useState('dark');
 	return (
 		<header className="header">
 			<h1>
+				{/* remove e  */}
 				<button type="reset" onClick={(e) => handleReset(e)}>
 					Where in the world?
 				</button>
@@ -47,7 +53,13 @@ export default function Header({ setDetailsActive, setHistory, setRegion, setSea
 function SwitchIcon({ icon, text }) {
 	return (
 		<span
-			style={{ display: 'flex', columnGap: '0.5rem', alignItems: 'center', fontSize: 'inherit', cursor: 'pointer' }}
+			style={{
+				display: 'flex',
+				columnGap: '0.5rem',
+				alignItems: 'center',
+				fontSize: 'inherit',
+				cursor: 'pointer',
+			}}
 		>
 			<img src={icon} alt="" style={{ inlineSize: '1em' }} />
 			<span>{text} Mode</span>

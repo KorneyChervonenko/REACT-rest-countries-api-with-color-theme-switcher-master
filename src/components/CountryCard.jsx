@@ -1,16 +1,21 @@
+import { useCountriesContext } from '../contexts/CountriesContext';
 import './CountriesCard.scss';
 export default function CountryCard({
 	country,
-	setDetailsActive,
-	// setCurrentCountry,
-	setHistory,
+	// setDetailsActive,
+	// // setCurrentCountry,
+	// setHistory,
 }) {
 	function handleClick() {
 		// setCurrentCountry(country);
-		setHistory((currentHistory) => [...currentHistory, country]);
-		setDetailsActive(true);
+		// setHistory((currentHistory) => [...currentHistory, country]);
+		// setDetailsActive(true);
+		dispatch({ type: 'add to history', payload: country });
+		dispatch({ type: 'set details status', payload: true });
 	}
 
+	const { countries, history, region, searchQuery, isDetailsActive, isLoading, dispatch } =
+		useCountriesContext();
 	// const cardStyle = { backgroundImage: `url(${country.flag})` };
 	const cardStyle = {};
 	return (

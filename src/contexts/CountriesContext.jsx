@@ -35,6 +35,16 @@ function reducer(state, action) {
 		case 'set details status':
 			return { ...state, isDetailsActive: action.payload };
 
+		case 'reset':
+			return { ...initialState, countries: state.countries };
+
+		case 'rewind history':
+			const history = state.history.slice(0, -1);
+			return { ...state, history, isDetailsActive: history.length !== 0 };
+
+		case 'add to history':
+			return { ...state, history: [...state.history, action.payload] };
+
 		default:
 			throw new Error('Unknown action type');
 	}

@@ -1,0 +1,3 @@
+performance optimization
+handlereset remove e
+dispatch type as variable ?
