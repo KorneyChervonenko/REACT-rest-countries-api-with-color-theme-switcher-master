@@ -62,17 +62,20 @@ function CountriesContextProvider({ children }) {
 			try {
 				// setIsLoading(true);
 				dispatch({ type: 'loading' });
-				// let response, data;
-				const response = await fetch('data.json'); //
-				// const response = await fetch('https://restcountries.com/v2/all');
-				// console.log(response);
+
+				// const response = await fetch('data.json'); //
+				// // const response = await fetch('https://restcountries.com/v2/all');
+				// if (!response.ok) throw new Error('Something went wrong with fetching data');
+				// const data = await response.json();
+
+				const response = await fetch('data.json.gz');
 				if (!response.ok) throw new Error('Something went wrong with fetching data');
-				const data = await response.json();
-				// console.log(data);
-				// setCountries(data.slice(0, 8));
-				// setCountries(data);
+				const ds = new DecompressionStream('gzip');
+				const decompressed_stream = response.body.pipeThrough(ds);
+				const data = await new Response(decompressed_stream).json();
+
 				dispatch({ type: 'set countries', payload: data });
-				// const regions = new Set(data.map((country) => country.region));
+
 				// console.log(regions);
 
 				// console.log(countries);
