@@ -1,6 +1,16 @@
+import { memo } from 'react';
 import { useCountriesContext } from '../contexts/CountriesContext';
 import './CountriesCard.scss';
-export default function CountryCard({ country }) {
+
+function areCountriesEqual(previous, current) {
+	const areEqual = previous.country.alpha3Code === current.country.alpha3Code;
+	// console.log(previous.dessert, current.dessert, areEqual);
+	// console.log(previous.dessert, current.dessert, areEqual);
+	// if (!areEqual) console.log(previous.country.name);
+	return areEqual;
+}
+
+function CountryCard({ country }) {
 	const { dispatch } = useCountriesContext();
 	// const cardStyle = {};
 	return (
@@ -30,3 +40,5 @@ export default function CountryCard({ country }) {
 		</li>
 	);
 }
+
+export default memo(CountryCard, areCountriesEqual);
