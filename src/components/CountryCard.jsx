@@ -1,27 +1,14 @@
 import { useCountriesContext } from '../contexts/CountriesContext';
 import './CountriesCard.scss';
-export default function CountryCard({
-	country,
-	// setDetailsActive,
-	// // setCurrentCountry,
-	// setHistory,
-}) {
-	function handleClick() {
-		// setCurrentCountry(country);
-		// setHistory((currentHistory) => [...currentHistory, country]);
-		// setDetailsActive(true);
-		dispatch({ type: 'add to history', payload: country });
-		dispatch({ type: 'set details status', payload: true });
-	}
-
-	const { countries, history, region, searchQuery, isDetailsActive, isLoading, dispatch } =
-		useCountriesContext();
-	// const cardStyle = { backgroundImage: `url(${country.flag})` };
-	const cardStyle = {};
+export default function CountryCard({ country }) {
+	const { dispatch } = useCountriesContext();
+	// const cardStyle = {};
 	return (
-		<li className="country-card" style={cardStyle} onClick={handleClick}>
-			{/* <h3 className="country-name">{country.name}</h3> */}
-			{/* <h3 className="country-name">{country.name}</h3> */}
+		<li
+			className="country-card"
+			// style={cardStyle}
+			onClick={() => dispatch({ type: 'add to history', payload: country })}
+		>
 			<img src={country.flag} alt={`flag of ${country.name}`} className="country-flag" />
 			<table className="country-info">
 				<caption className="country-name">{country.name}</caption>
@@ -40,21 +27,6 @@ export default function CountryCard({
 					</tr>
 				</tbody>
 			</table>
-
-			{/* <div className="country-info">
-				<p className="table-row">
-					<span className="table-row-title">Population:</span>
-					{country.population}
-				</p>
-				<p className="table-row">
-					<span className="table-row-title">Region:</span>
-					{country.region}
-				</p>
-				<p className="table-row">
-					<span className="table-row-title">Capital:</span>
-					{country.capital}
-				</p>
-			</div> */}
 		</li>
 	);
 }

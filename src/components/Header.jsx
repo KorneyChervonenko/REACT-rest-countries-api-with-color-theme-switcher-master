@@ -8,16 +8,10 @@ import { useCountriesContext } from '../contexts/CountriesContext';
 export default function Header() {
 	function handleReset(e) {
 		e.preventDefault();
-		// setDetailsActive(false);
-		// setHistory([]);
-		// setRegion('All');
-		// setSearchQuery('');
 		dispatch({ type: 'reset' });
 	}
 
-	// const [colorTheme, changeColorTheme] = useState('light');
-	const { countries, history, region, searchQuery, isDetailsActive, isLoading, dispatch } =
-		useCountriesContext();
+	const { dispatch } = useCountriesContext();
 
 	const [colorTheme, changeColorTheme] = useState('dark');
 	return (

@@ -43,7 +43,7 @@ function reducer(state, action) {
 			return { ...state, history, isDetailsActive: history.length !== 0 };
 
 		case 'add to history':
-			return { ...state, history: [...state.history, action.payload] };
+			return { ...state, history: [...state.history, action.payload], isDetailsActive: true };
 
 		default:
 			throw new Error('Unknown action type');

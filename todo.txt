@@ -1,3 +1,5 @@
 performance optimization
 handlereset remove e
 dispatch type as variable ?
+
+history.length > 0 && isDetailsActive

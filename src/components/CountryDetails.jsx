@@ -5,18 +5,9 @@ import './CountryDetails.scss';
 
 export default function CountryDetails() {
 	// console.log(countryName);
-	const { countries, history, region, searchQuery, isDetailsActive, isLoading, dispatch } =
-		useCountriesContext();
+	const { history, dispatch } = useCountriesContext();
 	const currentCountry = history.at(-1);
 	if (!currentCountry) return;
-
-	// TODO return to previous country
-
-	// function handleBackClick() {
-	// 	// setDetailsActive(false);
-	// 	setHistory((currentHistory) => currentHistory.slice(0, -1));
-	// 	if (history.length === 0) setDetailsActive(false);
-	// }
 
 	function hasNeighborStates(country) {
 		return (
@@ -25,8 +16,6 @@ export default function CountryDetails() {
 			currentCountry.borders.length > 0
 		);
 	}
-
-	// const neighborCountry = currentCountry.borders.map((countryCode) => <li>countryCode</li>);
 
 	return (
 		<>
@@ -93,15 +82,7 @@ export default function CountryDetails() {
 									<td>
 										<menu className="neighbor-countries-list">
 											{currentCountry.borders.map((countryCode) => (
-												// <li key={countryCode}>{countryCode}</li>
-												<CountryButton
-													key={countryCode}
-													// countries={countries}
-													countryCode={countryCode}
-													// // setCurrentCountry={setCurrentCountry}
-													// history={history}
-													// setHistory={setHistory}
-												/>
+												<CountryButton key={countryCode} countryCode={countryCode} />
 											))}
 										</menu>
 									</td>
