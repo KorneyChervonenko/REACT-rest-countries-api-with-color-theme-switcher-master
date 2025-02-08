@@ -9,11 +9,11 @@ import LoadingIndicator from './LoadingIndicator.jsx';
 import './App.scss';
 
 export default function App() {
-	const { history, isDetailsActive, isLoading } = useCountriesContext();
+	const { history, isLoading } = useCountriesContext();
 	return (
 		<main className="App">
 			<Header />
-			{history.length > 0 && isDetailsActive ? (
+			{history.length > 0 ? (
 				<CountryDetails key={history.at(-1).name} />
 			) : (
 				<>

@@ -6,7 +6,6 @@ const initialState = {
 	history: [],
 	region: 'All',
 	searchQuery: '',
-	isDetailsActive: false,
 	isLoading: false,
 };
 
@@ -40,10 +39,10 @@ function reducer(state, action) {
 
 		case 'rewind history':
 			const history = state.history.slice(0, -1);
-			return { ...state, history, isDetailsActive: history.length !== 0 };
+			return { ...state, history };
 
 		case 'add to history':
-			return { ...state, history: [...state.history, action.payload], isDetailsActive: true };
+			return { ...state, history: [...state.history, action.payload] };
 
 		default:
 			throw new Error('Unknown action type');
@@ -51,8 +50,11 @@ function reducer(state, action) {
 }
 
 function CountriesContextProvider({ children }) {
-	const [{ countries, history, region, searchQuery, isDetailsActive, isLoading }, dispatch] =
-		useReducer(reducer, undefined, getInitialState);
+	const [{ countries, history, region, searchQuery, isLoading }, dispatch] = useReducer(
+		reducer,
+		undefined,
+		getInitialState
+	);
 
 	useEffect(function () {
 		// console.clear();
@@ -86,7 +88,7 @@ function CountriesContextProvider({ children }) {
 
 	return (
 		<CountriesContext.Provider
-			value={{ countries, history, region, searchQuery, isDetailsActive, isLoading, dispatch }}
+			value={{ countries, history, region, searchQuery, isLoading, dispatch }}
 		>
 			{children}
 		</CountriesContext.Provider>
