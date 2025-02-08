@@ -4,7 +4,7 @@ import Header from './Header.jsx';
 import Search from './Search.jsx';
 import CountriesList from './CountriesList.jsx';
 import CountryDetails from './CountryDetails.jsx';
-import CircularProgress from '@mui/material/CircularProgress';
+import LoadingIndicator from './LoadingIndicator.jsx';
 
 import './App.scss';
 
@@ -18,8 +18,7 @@ export default function App() {
 			) : (
 				<>
 					<Search />
-					{isLoading && <CircularProgress style={{ color: 'yellow' }} />}
-					{!isLoading && <CountriesList />}
+					{isLoading ? <LoadingIndicator /> : <CountriesList />}
 				</>
 			)}
 		</main>
