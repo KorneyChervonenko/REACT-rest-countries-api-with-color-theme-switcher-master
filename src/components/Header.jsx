@@ -4,11 +4,15 @@ import './Header.scss';
 import iconMoon from '../images/icon-moon.svg';
 import iconSun from '../images/icon-sun.svg';
 import { useCountriesContext } from '../contexts/CountriesContext';
+import { useNavigate } from 'react-router';
 
 export default function Header() {
+	const navigate = useNavigate();
+
 	function handleReset(e) {
 		e.preventDefault();
 		dispatch({ type: 'reset' });
+		navigate('/', { replace: true });
 	}
 
 	const { dispatch } = useCountriesContext();

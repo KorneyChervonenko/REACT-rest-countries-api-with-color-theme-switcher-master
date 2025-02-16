@@ -19,10 +19,6 @@ export default function CountriesList() {
 	const visibleCountries = filteredCountries.slice(range.start, range.end);
 
 	function handleScroll(e) {
-		// console.log(e);
-		// console.log(e.deltaY);
-		// console.log(range, visibleCountries.length);
-		// e.preventDefault();
 		if (e.nativeEvent.wheelDeltaY < 0 && range.end < filteredCountries.length)
 			setRange((currRange) => ({
 				start: Math.min(filteredCountries.length - maxVisibleItems, currRange.start + 1),

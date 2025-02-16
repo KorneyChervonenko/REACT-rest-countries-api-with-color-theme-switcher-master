@@ -7,15 +7,9 @@ import './CountryDetails.scss';
 
 export default function CountryDetails() {
 	// console.log(countryName);
-	const { countries } = useCountriesContext();
 	const { countryCode } = useParams();
+	const { countries } = useCountriesContext();
 	const navigate = useNavigate();
-	// console.log(countryCode);
-	// const country = countries.find((country) => country.alpha3Code === countryCode);
-	// console.log(country);
-
-	const { history, dispatch } = useCountriesContext();
-	// const currentCountry = history.at(-1);
 	const currentCountry = countries.find((country) => country.alpha3Code === countryCode);
 	if (!currentCountry) return;
 
@@ -29,12 +23,7 @@ export default function CountryDetails() {
 
 	return (
 		<>
-			<button
-				className="back-button"
-				type="button"
-				// onClick={() => dispatch({ type: 'rewind history' })}
-				onClick={() => navigate(-1)}
-			>
+			<button className="back-button" type="button" onClick={() => navigate(-1)}>
 				⬅ Back
 			</button>
 

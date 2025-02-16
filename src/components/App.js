@@ -10,20 +10,11 @@ import './App.scss';
 import { BrowserRouter, Route, Routes } from 'react-router';
 
 export default function App() {
-	const { history, isLoading } = useCountriesContext();
+	const { isLoading } = useCountriesContext();
 	return (
 		<main className="App">
-			{/* <Header />
-			{history.length > 0 ? (
-				<CountryDetails key={history.at(-1).name} />
-			) : (
-				<>
-					<Search />
-					{isLoading ? <LoadingIndicator /> : <CountriesList />}
-				</>
-			)} */}
-			<Header />
 			<BrowserRouter>
+				<Header />
 				<Routes>
 					<Route path=":countryCode" element={<CountryDetails />} />
 					<Route
