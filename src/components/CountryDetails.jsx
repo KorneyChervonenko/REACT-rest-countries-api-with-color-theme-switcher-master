@@ -1,12 +1,22 @@
 // import getDetails from './utils/getDetails.mjs';
+import { useNavigate, useParams } from 'react-router';
 import { useCountriesContext } from '../contexts/CountriesContext.jsx';
+
 import CountryButton from './CountryButton.jsx';
 import './CountryDetails.scss';
 
 export default function CountryDetails() {
 	// console.log(countryName);
+	const { countries } = useCountriesContext();
+	const { countryCode } = useParams();
+	const navigate = useNavigate();
+	// console.log(countryCode);
+	// const country = countries.find((country) => country.alpha3Code === countryCode);
+	// console.log(country);
+
 	const { history, dispatch } = useCountriesContext();
-	const currentCountry = history.at(-1);
+	// const currentCountry = history.at(-1);
+	const currentCountry = countries.find((country) => country.alpha3Code === countryCode);
 	if (!currentCountry) return;
 
 	function hasNeighborStates(country) {
@@ -22,7 +32,8 @@ export default function CountryDetails() {
 			<button
 				className="back-button"
 				type="button"
-				onClick={() => dispatch({ type: 'rewind history' })}
+				// onClick={() => dispatch({ type: 'rewind history' })}
+				onClick={() => navigate(-1)}
 			>
 				⬅ Back
 			</button>

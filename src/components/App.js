@@ -7,12 +7,13 @@ import CountryDetails from './CountryDetails.jsx';
 import LoadingIndicator from './LoadingIndicator.jsx';
 
 import './App.scss';
+import { BrowserRouter, Route, Routes } from 'react-router';
 
 export default function App() {
 	const { history, isLoading } = useCountriesContext();
 	return (
 		<main className="App">
-			<Header />
+			{/* <Header />
 			{history.length > 0 ? (
 				<CountryDetails key={history.at(-1).name} />
 			) : (
@@ -20,7 +21,23 @@ export default function App() {
 					<Search />
 					{isLoading ? <LoadingIndicator /> : <CountriesList />}
 				</>
-			)}
+			)} */}
+			<Header />
+			<BrowserRouter>
+				<Routes>
+					<Route path=":countryCode" element={<CountryDetails />} />
+					<Route
+						index
+						element={
+							<>
+								<Search />
+								{isLoading ? <LoadingIndicator /> : <CountriesList />}
+							</>
+						}
+					/>
+					<Route path="*" element={<p>Country not found</p>} />
+				</Routes>
+			</BrowserRouter>
 		</main>
 	);
 }
