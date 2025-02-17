@@ -5,8 +5,11 @@ import { setCountries, setLoading, setReady } from './countriesSlice.js';
 import CountryCard from './CountryCard.jsx';
 // import { useCountriesContext } from '../../contexts/CountriesContext.jsx';
 import './CountriesList.scss';
+import useCountries from '../../shared/useCountries.mjs';
 
 export default function CountriesList() {
+	const { fetchCountries } = useCountries();
+
 	const dispatch = useDispatch();
 
 	const maxVisibleItems = 10;
@@ -40,39 +43,9 @@ export default function CountriesList() {
 			}));
 	}
 
-	useEffect(function () {
-		// console.clear();
-		async function fetchCountries() {
-			try {
-				// setIsLoading(true);
-				// dispatch({ type: 'loading' });
-				dispatch(setLoading());
-				// const response = await fetch('data.json'); //
-				// // const response = await fetch('https://restcountries.com/v2/all');
-				// if (!response.ok) throw new Error('Something went wrong with fetching data');
-				// const data = await response.json();
-
-				const response = await fetch('data.json.gz');
-				if (!response.ok) throw new Error('Something went wrong with fetching data');
-				const ds = new DecompressionStream('gzip');
-				const decompressed_stream = response.body.pipeThrough(ds);
-				const data = await new Response(decompressed_stream).json();
-
-				dispatch(setCountries(data));
-
-				// dispatch({ type: 'set countries', payload: data });
-				// console.log(regions);
-				// console.log(countries);
-			} catch (error) {
-				console.log(error.message);
-				alert(error.message);
-			} finally {
-				// dispatch({ type: 'ready' });
-				dispatch(setReady());
-			}
-		}
+	useEffect(() => {
 		fetchCountries();
-	}, []);
+	}, [fetchCountries]);
 
 	return (
 		<>
