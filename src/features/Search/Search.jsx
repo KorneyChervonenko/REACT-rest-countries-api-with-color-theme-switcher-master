@@ -1,8 +1,14 @@
-import { useCountriesContext } from '../contexts/CountriesContext';
+// import { useCountriesContext } from '../../contexts/CountriesContext';
+import { useDispatch, useSelector } from 'react-redux';
+import { setQuery, setRegion } from '../Search/searchSlice';
+
 import './Search.scss';
 
 export default function Search() {
-	const { region, searchQuery, dispatch } = useCountriesContext();
+	// const { region, searchQuery, dispatch } = useCountriesContext();
+	const region = useSelector((store) => store.search.region);
+	const searchQuery = useSelector((store) => store.search.searchQuery);
+	const dispatch = useDispatch();
 
 	const regions = [
 		'Asia',
@@ -21,15 +27,16 @@ export default function Search() {
 				placeholder="🔎 Search for a country..."
 				value={searchQuery}
 				onChange={(e) =>
-					dispatch({ type: 'set search query', payload: e.target.value.toLowerCase() })
+					// dispatch({ type: 'set search query', payload: e.target.value.toLowerCase() })
+					dispatch(setQuery(e.target.value.toLowerCase()))
 				}
-				required
+				// required
 			/>
 			<select
 				name="region"
 				value={region}
-				// onChange={(e) => setRegion(e.target.value)}
-				onChange={(e) => dispatch({ type: 'set region', payload: e.target.value })}
+				onChange={(e) => dispatch(setRegion(e.target.value))}
+				// onChange={(e) => dispatch({ type: 'set region', payload: e.target.value })}
 			>
 				<option value="All">Filter by region</option>
 				{regions.map((region) => (

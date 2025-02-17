@@ -1,25 +1,36 @@
 // import getDetails from './utils/getDetails.mjs';
 import { useNavigate, useParams } from 'react-router';
-import { useCountriesContext } from '../contexts/CountriesContext.jsx';
+import { useSelector } from 'react-redux';
+// import { useCountriesContext } from '../../contexts/CountriesContext.jsx';
 
 import CountryButton from './CountryButton.jsx';
 import './CountryDetails.scss';
 
+function hasNeighborStates(country) {
+	return (
+		//refactor !!!!
+		Object.hasOwn(country, 'borders') &&
+		country.borders instanceof Array &&
+		country.borders.length > 0
+	);
+}
+
 export default function CountryDetails() {
 	// console.log(countryName);
 	const { countryCode } = useParams();
-	const { countries } = useCountriesContext();
+	const countries = useSelector((store) => store.countries.countries);
+	// const { countries } = useCountriesContext();
 	const navigate = useNavigate();
 	const currentCountry = countries.find((country) => country.alpha3Code === countryCode);
 	if (!currentCountry) return;
 
-	function hasNeighborStates(country) {
-		return (
-			Object.hasOwn(country, 'borders') &&
-			currentCountry.borders instanceof Array &&
-			currentCountry.borders.length > 0
-		);
-	}
+	// function hasNeighborStates(country) {
+	// 	return (
+	// 		Object.hasOwn(country, 'borders') &&
+	// 		currentCountry.borders instanceof Array &&
+	// 		currentCountry.borders.length > 0
+	// 	);
+	// }
 
 	return (
 		<>

@@ -30,6 +30,7 @@ function reducer(state, action) {
 		case 'set search query':
 			return { ...state, searchQuery: action.payload };
 
+		/// reafactor!!!!!
 		case 'reset':
 			return { ...initialState, countries: state.countries };
 

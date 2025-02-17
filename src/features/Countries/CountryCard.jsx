@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { Link } from 'react-router';
-import './CountriesCard.scss';
+import './CountryCard.scss';
 
 function areCountriesEqual(previous, current) {
 	const areEqual = previous.country.alpha3Code === current.country.alpha3Code;

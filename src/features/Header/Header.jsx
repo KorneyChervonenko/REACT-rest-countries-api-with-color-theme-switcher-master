@@ -1,23 +1,29 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { reset } from '../Countries/countriesSlice';
+
 import './Header.scss';
 
-import iconMoon from '../images/icon-moon.svg';
-import iconSun from '../images/icon-sun.svg';
-import { useCountriesContext } from '../contexts/CountriesContext';
-import { useNavigate } from 'react-router';
+// import iconMoon from '../images/icon-moon.svg';
+import iconMoon from '../../images/icon-moon.svg';
+import iconSun from '../../images/icon-sun.svg';
+// import { useCountriesContext } from '../../contexts/CountriesContext';
 
 export default function Header() {
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 
 	function handleReset(e) {
 		e.preventDefault();
-		dispatch({ type: 'reset' });
+		dispatch(reset());
 		navigate('/', { replace: true });
 	}
 
-	const { dispatch } = useCountriesContext();
+	// const { dispatch } = useCountriesContext();
 
 	const [colorTheme, changeColorTheme] = useState('dark');
+
 	return (
 		<header className="header">
 			<h1>
