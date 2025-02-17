@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 // import { setCountries, setLoading, setReady } from './countriesSlice.js';
-
+import useCountries from '../../shared/useCountries.mjs';
 import CountryCard from './CountryCard.jsx';
 // import { useCountriesContext } from '../../contexts/CountriesContext.jsx';
 import './CountriesList.scss';
-import useCountries from '../../shared/useCountries.mjs';
 
 export default function CountriesList() {
 	const { fetchCountries } = useCountries();

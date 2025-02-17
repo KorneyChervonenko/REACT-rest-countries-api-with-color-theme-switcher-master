@@ -1,19 +1,17 @@
 // import getDetails from './utils/getDetails.mjs';
+import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import { useSelector } from 'react-redux';
 // import { useCountriesContext } from '../../contexts/CountriesContext.jsx';
+import useCountries from '../../shared/useCountries.mjs';
 
 import CountryButton from './CountryButton.jsx';
-import useCountries from '../../shared/useCountries.mjs';
 import './CountryDetails.scss';
-import { useEffect } from 'react';
 
 function hasNeighborStates(country) {
 	return (
-		//refactor !!!!
-		Object.hasOwn(country, 'borders') &&
-		country.borders instanceof Array &&
-		country.borders.length > 0
+		// Object.hasOwn(country, 'borders') && country.borders instanceof Array && country.borders.length > 0
+		country?.borders?.length > 0
 	);
 }
 
@@ -22,23 +20,15 @@ export default function CountryDetails() {
 		if (countries.length === 0) fetchCountries();
 	}, []);
 	// console.log(countryName);
-	const { fetchCountries } = useCountries();
+	const navigate = useNavigate();
 	const { countryCode } = useParams();
+	const { fetchCountries } = useCountries();
 	const countries = useSelector((store) => store.countries.countries);
 	// const { countries } = useCountriesContext();
-	const navigate = useNavigate();
 	const currentCountry = countries.find(
 		(country) => country.alpha3Code === countryCode.toUpperCase()
 	);
 	if (!currentCountry) return;
-
-	// function hasNeighborStates(country) {
-	// 	return (
-	// 		Object.hasOwn(country, 'borders') &&
-	// 		currentCountry.borders instanceof Array &&
-	// 		currentCountry.borders.length > 0
-	// 	);
-	// }
 
 	return (
 		<>
