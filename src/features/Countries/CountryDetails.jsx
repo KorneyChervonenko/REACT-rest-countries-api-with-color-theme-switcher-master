@@ -4,7 +4,9 @@ import { useSelector } from 'react-redux';
 // import { useCountriesContext } from '../../contexts/CountriesContext.jsx';
 
 import CountryButton from './CountryButton.jsx';
+import useCountries from '../../shared/useCountries.mjs';
 import './CountryDetails.scss';
+import { useEffect } from 'react';
 
 function hasNeighborStates(country) {
 	return (
@@ -16,7 +18,11 @@ function hasNeighborStates(country) {
 }
 
 export default function CountryDetails() {
+	useEffect(() => {
+		if (countries.length === 0) fetchCountries();
+	}, []);
 	// console.log(countryName);
+	const { fetchCountries } = useCountries();
 	const { countryCode } = useParams();
 	const countries = useSelector((store) => store.countries.countries);
 	// const { countries } = useCountriesContext();

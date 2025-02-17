@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setCountries, setLoading, setReady } from './countriesSlice.js';
+import { useSelector } from 'react-redux';
+// import { setCountries, setLoading, setReady } from './countriesSlice.js';
 
 import CountryCard from './CountryCard.jsx';
 // import { useCountriesContext } from '../../contexts/CountriesContext.jsx';
@@ -10,7 +10,7 @@ import useCountries from '../../shared/useCountries.mjs';
 export default function CountriesList() {
 	const { fetchCountries } = useCountries();
 
-	const dispatch = useDispatch();
+	// const dispatch = useDispatch();
 
 	const maxVisibleItems = 10;
 	const [range, setRange] = useState({ start: 0, end: maxVisibleItems });
@@ -44,8 +44,8 @@ export default function CountriesList() {
 	}
 
 	useEffect(() => {
-		fetchCountries();
-	}, [fetchCountries]);
+		if (countries.length === 0) fetchCountries();
+	}, []);
 
 	return (
 		<>
