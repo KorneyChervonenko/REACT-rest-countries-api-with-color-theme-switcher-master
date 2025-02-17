@@ -10,7 +10,9 @@ export default function CountryButton({ countryCode }) {
 
 	return (
 		<li className="country-button">
-			<Link to={`/${country.alpha3Code}`}>{country.name}</Link>
+			<Link to={`/${country.alpha3Code.toLowerCase()}`} className="country-button__link">
+				{country.name}
+			</Link>
 		</li>
 	);
 }

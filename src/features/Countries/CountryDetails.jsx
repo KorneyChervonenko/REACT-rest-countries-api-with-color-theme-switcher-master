@@ -21,7 +21,9 @@ export default function CountryDetails() {
 	const countries = useSelector((store) => store.countries.countries);
 	// const { countries } = useCountriesContext();
 	const navigate = useNavigate();
-	const currentCountry = countries.find((country) => country.alpha3Code === countryCode);
+	const currentCountry = countries.find(
+		(country) => country.alpha3Code === countryCode.toUpperCase()
+	);
 	if (!currentCountry) return;
 
 	// function hasNeighborStates(country) {
