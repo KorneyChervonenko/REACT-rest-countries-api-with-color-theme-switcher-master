@@ -10,7 +10,7 @@ function areCountriesEqual(previous, current) {
 function CountryCard({ country }) {
 	return (
 		<li>
-			<Link to={country.alpha3Code} className="country-card">
+			<Link to={country.alpha3Code.toLowerCase()} className="country-card">
 				<img src={country.flag} alt={`flag of ${country.name}`} className="country-flag" />
 				<table className="country-info">
 					<caption className="country-name">{country.name}</caption>
